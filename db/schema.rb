@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2022_03_12_191123) do
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
+    t.string "name", null: false
+    t.string "location", null: false
     t.integer "will_split"
     t.integer "wont_split"
     t.datetime "created_at", precision: 6, null: false
