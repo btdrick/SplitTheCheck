@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SplitTheCheck</title>
+    <title>Split The Check</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header id="banner">
+      <h1>Split the Check 🧾</h1>
+    </header>
+    <div id="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

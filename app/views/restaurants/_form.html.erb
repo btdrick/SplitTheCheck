@@ -1,6 +1,6 @@
 <%= form_with(model: restaurant) do |form| %>
   <% if restaurant.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
 
       <ul>
@@ -11,24 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-outline mb-4">
+    <%= form.label "Restaurant name (required)",
+      class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+  <div class="form-outline mb-4">
+    <%= form.label "Location in City, ST format (required)",
+      class: "form-label" %>
+    <%= form.text_field :location, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :will_split %>
-    <%= form.number_field :will_split %>
+  <div class="form-outline mb-4">
+    <%= form.label :will_split,
+      class: "form-label" %>
+    <%= form.number_field :will_split, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :wont_split %>
-    <%= form.number_field :wont_split %>
+  <div class="form-outline mb-4">
+    <%= form.label :wont_split,
+      class: "form-label" %>
+    <%= form.number_field :wont_split, class: "form-control" %>
   </div>
 
   <div class="actions">
