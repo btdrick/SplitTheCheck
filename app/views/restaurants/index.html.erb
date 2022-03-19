@@ -1,15 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Restaurants</h1>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container-fluid ms-auto me-auto">
+      <ul class="nav navbar-nav h5">
+        <li class="nav-item">
+          <%= newest_restaurants_link %>
+        </li>
+        <li class="nav-item">
+          <%= previous_restaurants_link %>
+        </li>
+        <li class="nav-item">
+          <%= next_restaurants_link %>
+        </li>
+        <li class="nav-item">
+          <%= oldest_restaurants_link %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Add Restaurant 🍖', new_restaurant_path, class:"nav-link" %>
+        </li>
+      </ul>
+      <div id="search-bar">
+        <form class="form-inline my-2 my-lg-0 nav-item">
+          <input class="form-control mr-sm-2" type="search"
+            placeholder="Search by name or location" aria-label="Search">
+          <button class="btn btn-warning my-2 my-sm-0"
+            type="submit">Search</button>
+        </form>
+      </div>
+  </div>
+</nav>
 
-<table>
+
+<table class="shadow table table-bordered">
   <thead>
+    <th colspan="7" id="header">
+      <h1>Current Listings</h1>
+    </th>
+  <thead class="thead-light">
     <tr>
       <th>Name</th>
       <th>Location</th>
       <th>Will split</th>
-      <th>Wont split</th>
-      <th colspan="3"></th>
+      <th colspan ="3">Wont split</th>
     </tr>
   </thead>
 
@@ -27,7 +59,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Restaurant', new_restaurant_path %>

@@ -1,3 +1,45 @@
 // Place all the styles related to the Restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+nav {
+  margin-bottom: 1em;
+  border-radius: 10px;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  padding: 0 0.5em;
+  color: white;
+}
+
+.navbar .navbar-nav .nav-item:not(:last-child) .nav-link {
+  border-right: 2px solid white;
+}
+
+.table {
+  td {
+    max-width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  tbody {
+    tr:nth-child(odd) {
+      background-color: #D199AE
+    }
+  }
+}
+
+#header {
+  text-align: center;
+  background-color: #541E42;
+  color: white;
+}
+
+#search-bar {
+  form {
+    display: flex;
+  }
+  button {
+    margin: 0 1em;
+  }
+}

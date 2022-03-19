@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="form-outline mb-4">
-    <%= form.label "Restaurant name (required)",
+    <%= form.label :name, "Restaurant name (required)",
       class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-outline mb-4">
-    <%= form.label "Location in City, ST format (required)",
+    <%= form.label :location, "Location in City, ST format (required)",
       class: "form-label" %>
     <%= form.text_field :location, class: "form-control" %>
   </div>
@@ -36,6 +36,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
