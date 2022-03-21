@@ -5,9 +5,14 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants or /restaurants.json
   def index
-    @restaurants = Restaurant
+    @q = Restaurant.ransack(params[:q])
+    @restaurants = @q.result
       .limit(RESTAURANTS_PER_PAGE)
       .offset(@page * RESTAURANTS_PER_PAGE)
+
+    if @q
+      @page = 1
+    end
   end
 
   # GET /restaurants/1 or /restaurants/1.json
