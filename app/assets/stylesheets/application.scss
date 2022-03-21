@@ -13,19 +13,28 @@
  *= require_tree .
  *= require_self
  */
-body {
-  margin: 0 auto;
-}
 
-#banner {
+.navbar .nav {
+     margin: 0;
+     display: table;
+     width: 100%;
+ }
+
+ .navbar .nav li {
+     display: table-cell;
+     float: none;
+     padding: 0.5em 1em;
+ }
+
+#brand {
   width: 100%;
-  text-align: center;
-  margin-bottom: 1.5em;
   padding: 2em 2em;
   background-color: #541E42;
 
-  h1 {
+  a {
     display: inline-flex;
+    text-decoration: none;
+    font-weight: bold;
     box-shadow: 5px 8px rgba(0, 0, 0, 0.4);
     padding: 0.5em 1em;
     border-style: solid;
@@ -33,6 +42,10 @@ body {
     border-radius: 20px;
     color: black;
     background-color: white;
+  }
+
+  form {
+    display: flex;
   }
 }
 

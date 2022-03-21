@@ -11,8 +11,22 @@
   </head>
 
   <body>
-    <header id="banner">
-      <h1>Split the Check 🧾</h1>
+    <header id="brand">
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                  <h3><a href="/restaurants">Split the Check 🧾</a></h3>
+                </li>
+                <li>
+                  <%= search_form_for @q do |f| %>
+                    <%= f.search_field :name_or_location_cont, class:"form-control mr-sm-2"%>
+                    <%= f.submit class:"btn btn-warning my-2 my-sm-0", style:"margin-left: 1em"%>
+                  <% end %>
+                </li>
+            </ul>
+        </div>
+      </nav>
     </header>
     <div id="container">
       <%= yield %>

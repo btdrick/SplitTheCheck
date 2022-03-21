@@ -14,4 +14,8 @@ class Restaurant < ApplicationRecord
     self.will_split ||= 0
     self.wont_split ||= 0
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "location"]
+  end
 end

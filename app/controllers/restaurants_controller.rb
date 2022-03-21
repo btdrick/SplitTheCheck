@@ -1,18 +1,10 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
-  before_action :set_page, only: [:index]
-  RESTAURANTS_PER_PAGE = 10
 
   # GET /restaurants or /restaurants.json
   def index
     @q = Restaurant.ransack(params[:q])
     @restaurants = @q.result
-      .limit(RESTAURANTS_PER_PAGE)
-      .offset(@page * RESTAURANTS_PER_PAGE)
-
-    if @q
-      @page = 1
-    end
   end
 
   # GET /restaurants/1 or /restaurants/1.json
@@ -78,11 +70,4 @@ class RestaurantsController < ApplicationController
         .require(:restaurant)
         .permit(:name, :location, :will_split, :wont_split)
     end
-
-    # Update the session for current index page
-    def set_page
-      session[:page] = params[:page].to_i || 0
-      @page = session[:page]
-    end
-
 end

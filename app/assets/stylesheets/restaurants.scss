@@ -11,10 +11,6 @@ nav {
   color: white;
 }
 
-.navbar .navbar-nav .nav-item:not(:last-child) .nav-link {
-  border-right: 2px solid white;
-}
-
 .table {
   td {
     max-width: 700px;
@@ -33,11 +29,7 @@ nav {
   text-align: center;
   background-color: #541E42;
   color: white;
-}
-
-#search-bar {
-  margin: 0 1em;
-  form {
-    display: flex;
+  th {
+    border: none;
   }
 }
