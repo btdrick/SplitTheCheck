@@ -1,13 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  location: MyString
-  will_split: 1
-  wont_split: 1
-
-two:
-  name: MyString
-  location: MyString
-  will_split: 1
-  wont_split: 1
+<% 1.upto(100) do |i| %>
+restaurant_<%= i %>:
+  name: Best place in town
+  location: Nowhereville, KT
+  will_split: 0
+  wont_split: 0
+<% end %>

@@ -45,4 +45,12 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to restaurants_url
   end
+
+  test "should cast vote that restaurant splits checks" do
+    assert_difference()
+  end
+
+  test "should cast vote that restaurant doesn't split checks" do
+    assert_difference()
+  end
 end

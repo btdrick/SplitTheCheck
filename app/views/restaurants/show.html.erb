@@ -13,11 +13,11 @@
               <th class="h3">Wont split rating: <%= @restaurant.wont_split %></th>
             </tr>
           </thead>
-          <tbody style="text-align: center">
+          <tbody>
             <tr>
-              <td><%= button_to "SPLITS", vote_path(@restaurant),
+              <td><%= button_to "VOTE", vote_path(@restaurant),
                 name: 'will', method: "put", class: "btn btn-success" %></td>
-              <td><%= button_to "DOESN'T SPLIT", vote_path(@restaurant),
+              <td><%= button_to "VOTE", vote_path(@restaurant),
                 name: "wont", method: "put", class: "btn btn-danger" %></td>
             </tr>
           </tbody>

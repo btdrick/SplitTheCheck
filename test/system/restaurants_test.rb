@@ -2,22 +2,21 @@ require "application_system_test_case"
 
 class RestaurantsTest < ApplicationSystemTestCase
   setup do
-    @restaurant = restaurants(:one)
+    @restaurant = restaurants(:restaurant_1)
   end
 
   test "visiting the index" do
     visit restaurants_url
-    assert_selector "h1", text: "Restaurants"
+    assert_selector "h1", text: "Split the Check 🧾"
   end
 
   test "creating a Restaurant" do
     visit restaurants_url
-    click_on "New Restaurant"
+    click_on "Add Restaurant"
 
+    fill_in "name", with: @restaurant.name
     fill_in "Location", with: @restaurant.location
-    fill_in "Name", with: @restaurant.name
-    fill_in "Will split", with: @restaurant.will_split
-    fill_in "Wont split", with: @restaurant.wont_split
+
     click_on "Create Restaurant"
 
     assert_text "Restaurant was successfully created"
@@ -28,10 +27,9 @@ class RestaurantsTest < ApplicationSystemTestCase
     visit restaurants_url
     click_on "Edit", match: :first
 
+    fill_in "name", with: @restaurant.name
     fill_in "Location", with: @restaurant.location
-    fill_in "Name", with: @restaurant.name
-    fill_in "Will split", with: @restaurant.will_split
-    fill_in "Wont split", with: @restaurant.wont_split
+
     click_on "Update Restaurant"
 
     assert_text "Restaurant was successfully updated"
@@ -45,5 +43,25 @@ class RestaurantsTest < ApplicationSystemTestCase
     end
 
     assert_text "Restaurant was successfully destroyed"
+  end
+
+  test "voting a restaurant that splits checks" do
+    visit restaurants_url
+    click_on "Show", match: :first
+    click_on "will", match: :first
+
+    assert_text "Will split rating: 1"
+    assert_text "Wont split rating: 0"
+    click_on "Back"
+  end
+
+  test "voting a restaurant that doesn't split checks" do
+    visit restaurants_url
+    click_on "Show", match: :first
+    click_on "wont", match: :first
+
+    assert_text "Will split rating: 0"
+    assert_text "Wont split rating: 1"
+    click_on "Back"
   end
 end
