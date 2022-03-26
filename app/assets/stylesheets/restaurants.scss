@@ -6,6 +6,18 @@ nav {
   border-radius: 10px;
 }
 
+.navbar .nav {
+     margin: 0;
+     display: table;
+     width: 100%;
+ }
+
+ .navbar .nav li {
+     display: table-cell;
+     float: none;
+     padding: 0.5em 1em;
+ }
+
 .navbar .navbar-nav .nav-item .nav-link {
   padding: 0 0.5em;
   color: white;
@@ -22,6 +34,13 @@ nav {
     tr:nth-child(odd) {
       background-color: #D199AE
     }
+  }
+}
+
+#search {
+
+  form {
+    display: flex;
   }
 }
 
