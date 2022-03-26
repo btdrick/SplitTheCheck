@@ -1,24 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+<div class="card shadow" id="show-restaurant">
+  <div class="card-body">
+    <h1 class="card-title"><%= @restaurant.name %></h1>
+    <h5 class="card-subtitle mb-2 text-muted">  <%= @restaurant.location %></h5>
 
-<p>
-  <strong>Location:</strong>
-  <%= @restaurant.location %>
-</p>
-
-<p>
-  <strong>Will split:</strong>
-  <%= @restaurant.will_split %>
-</p>
-
-<p>
-  <strong>Wont split:</strong>
-  <%= @restaurant.wont_split %>
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+      <div>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th class="h3">Will split rating: <%= @restaurant.will_split %></th>
+              <th class="h3">Wont split rating: <%= @restaurant.wont_split %></th>
+            </tr>
+          </thead>
+          <tbody style="text-align: center">
+            <tr>
+              <td><%= button_to "SPLITS", vote_path(@restaurant),
+                name: 'will', method: "put", class: "btn btn-success" %></td>
+              <td><%= button_to "DOESN'T SPLIT", vote_path(@restaurant),
+                name: "wont", method: "put", class: "btn btn-danger" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+      <%= link_to 'Back', restaurants_path %>
+  </div>
+</div>

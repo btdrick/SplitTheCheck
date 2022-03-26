@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: %i[ show edit update destroy ]
+  before_action :set_restaurant, only: %i[ show edit update destroy vote ]
 
   # GET /restaurants or /restaurants.json
   def index
@@ -33,6 +33,16 @@ class RestaurantsController < ApplicationController
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def vote
+    @restaurant = Restaurant.all.find(params[:id])
+    if params[:will]
+      Restaurant.increment_counter(:will_split, @restaurant)
+    elsif params[:wont]
+      Restaurant.increment_counter(:wont_split, @restaurant)
+    end
+    redirect_to restaurant_url(@restaurant)
   end
 
   # PATCH/PUT /restaurants/1 or /restaurants/1.json

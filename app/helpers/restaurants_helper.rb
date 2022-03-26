@@ -14,4 +14,12 @@ module RestaurantsHelper
     end
     header
   end
+
+  def create_return_link
+    return_link = ''
+    if @restaurants.count < Restaurant.count
+      return_link = link_to 'Back', restaurants_path
+    end
+    return_link
+  end
 end
