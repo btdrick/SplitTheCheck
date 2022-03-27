@@ -1,17 +1,17 @@
-name,location
-Elaine's Cafe|Aurora, CO
-BBQ & Eats|Tampa, FL
+name,location,will_split,wont_split
+Elaine's Cafe|Aurora, CO|2|18
+BBQ & Eats|Tampa, FL|12|1
 Hard Rock Buffet|Sterling Heights, MI
 Hammett Omelettes|Lewiston, ME
-Portia Creperie|Jefferson City, MO
+Portia Creperie|Jefferson City, MO|5|6
 Osborne's|Austin, TX
 Isabelle Ranch BBQ|Duluth, GA
 Quentin's Dinner Theatre|Lewiston, ME
-Forrest Cafe|Phoenix, AZ
+Forrest Cafe|Phoenix, AZ|8|9
 Schneider American Eats|Montpelier, VT
 Pierce|Columbia, NC
-Brett BBQ|Athens, GA
-Miles Fries|Butte, MT
+Brett BBQ|Athens, GA|108|33
+Miles Fries|Butte, MT|2|14
 Megan's Garden|Essex, MA
 Graham Kane|Chicago, IL
 Vivian's|Denver, CO

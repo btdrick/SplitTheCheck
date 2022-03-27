@@ -36,15 +36,6 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "destroying a Restaurant" do
-    visit restaurants_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
-    end
-
-    assert_text "Restaurant was successfully destroyed"
-  end
-
   test "voting a restaurant that splits checks" do
     visit restaurants_url
     click_on "Show", match: :first

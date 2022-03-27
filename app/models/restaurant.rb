@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-  after_initialize :set_defaults, unless: :persisted?
+  after_initialize :set_defaults
   default_scope -> { order(created_at: :desc) }
   #Parameter validation
   validates :name, presence: true
@@ -11,8 +11,10 @@ class Restaurant < ApplicationRecord
     numericality: { greater_than_or_equal_to: 0 }
 
   def set_defaults
-    self.will_split ||= 0
-    self.wont_split ||= 0
+    unless persisted?
+      self.will_split ||= 0
+      self.wont_split ||= 0
+    end
   end
 
   def self.ransackable_attributes(auth_object = nil)
