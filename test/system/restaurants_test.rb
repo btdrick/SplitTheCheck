@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class RestaurantsTest < ApplicationSystemTestCase
   setup do
-    @restaurant = restaurants(:restaurant_1)
+    @restaurant = restaurants(:one)
   end
 
   test "visiting the index" do
@@ -14,8 +14,8 @@ class RestaurantsTest < ApplicationSystemTestCase
     visit restaurants_url
     click_on "Add Restaurant"
 
-    fill_in "name", with: @restaurant.name
-    fill_in "Location", with: @restaurant.location
+    fill_in "restaurant[name]", with: @restaurant.name
+    fill_in "restaurant[location]", with: @restaurant.location
 
     click_on "Create Restaurant"
 
@@ -27,8 +27,8 @@ class RestaurantsTest < ApplicationSystemTestCase
     visit restaurants_url
     click_on "Edit", match: :first
 
-    fill_in "name", with: @restaurant.name
-    fill_in "Location", with: @restaurant.location
+    fill_in "restaurant[name]", with: @restaurant.name
+    fill_in "restaurant[location]", with: @restaurant.location
 
     click_on "Update Restaurant"
 
@@ -41,8 +41,8 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Show", match: :first
     click_on "will", match: :first
 
-    assert_text "Will split rating: 1"
-    assert_text "Wont split rating: 0"
+    assert_text "Will split rating: 134"
+    assert_text "Wont split rating: 24"
     click_on "Back"
   end
 
@@ -51,8 +51,19 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Show", match: :first
     click_on "wont", match: :first
 
-    assert_text "Will split rating: 0"
-    assert_text "Wont split rating: 1"
+    assert_text "Will split rating: 133"
+    assert_text "Wont split rating: 25"
     click_on "Back"
+  end
+
+  test "searching for restaurants in GA" do
+    visit restaurants_url
+    fill_in "q[name_or_location_cont]", with: "GA"
+    click_on "Search", match: :first
+
+    assert_text "2 Results Found"
+    assert_text "Good eats BBQ"
+    assert_text "Dave's"
+    click_on "Split the Check 🧾"
   end
 end

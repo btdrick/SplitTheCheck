@@ -1,9 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<% 1.upto(100) do |i| %>
-restaurant_<%= i %>:
-  name: Best place in town
-  location: Nowhereville, KT
-  will_split: 0
+one:
+  name: Tony's Pub
+  location: Newark, NJ
+  will_split: 3
+  wont_split: 18
+
+two:
+  name: Good eats BBQ
+  location: Athens, GA
+  will_split: 1
   wont_split: 0
-<% end %>
+
+three:
+  name: Three blind mice tavern
+  location: Los Angelos, CA
+  will_split: 133
+  wont_split: 24
+
+four:
+  name: Dave's
+  location: Atlanta, GA
+  will_split: 51
+  wont_split: 54

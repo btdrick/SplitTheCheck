@@ -35,7 +35,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # POST /restaurant/:id/vote
+  # PATCH/PUT /restaurant/1/vote
   def vote
     @restaurant = Restaurant.all.find(params[:id])
     if params[:will]
@@ -43,7 +43,6 @@ class RestaurantsController < ApplicationController
     elsif params[:wont]
       Restaurant.increment_counter(:wont_split, @restaurant)
     end
-    @voted = true
     redirect_to restaurant_url(@restaurant)
   end
 
