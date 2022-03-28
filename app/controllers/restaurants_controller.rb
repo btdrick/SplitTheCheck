@@ -39,9 +39,9 @@ class RestaurantsController < ApplicationController
   def vote
     @restaurant = Restaurant.all.find(params[:id])
     if params[:will]
-      Restaurant.increment_counter(:will_split, @restaurant)
+      @restaurant.will_split_upvote
     elsif params[:wont]
-      Restaurant.increment_counter(:wont_split, @restaurant)
+      @restaurant.wont_split_upvote
     end
     redirect_to restaurant_url(@restaurant)
   end

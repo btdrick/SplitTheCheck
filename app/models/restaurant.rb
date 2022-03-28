@@ -20,4 +20,13 @@ class Restaurant < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["name", "location"]
   end
+
+  def will_split_upvote
+    self.increment!(:will_split)
+  end
+
+  def wont_split_upvote
+    self.increment!(:wont_split)
+  end
+
 end

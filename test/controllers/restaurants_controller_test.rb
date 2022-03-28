@@ -23,7 +23,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
           wont_split: @restaurant.wont_split } }
     end
 
-    assert_redirected_to restaurant_url(Restaurant.last)
+    assert_redirected_to restaurant_url(Restaurant.first)
   end
 
   test "should show restaurant" do
@@ -52,23 +52,15 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to restaurants_url
   end
 
-  test "should search for restaurants in GA" do
-    get restaurants_url
-    assert_difference('Restaurant.count', -2) do
-      get restaurants_url, params: { q: { name_or_location_cont: "GA" } }
-    end
-  end
-
   test "should cast vote that restaurant splits checks" do
-    assert_difference('@restaurant.will_split') do
-      put '/restaurant/' + @restaurant.id.to_s + '/vote',
+    put vote_path(@restaurant),
       params: { will: 'VOTE', id: @restaurant }
-    end
+    assert_redirected_to restaurant_url(@restaurant)
   end
 
   test "should cast vote that restaurant doesn't split checks" do
-    assert_difference('@restaurant.wont_split') do
-      post
-    end
+    put vote_path(@restaurant),
+      params: { wont: 'VOTE', id: @restaurant }
+    assert_redirected_to restaurant_url(@restaurant)
   end
 end
