@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root :to => redirect('/restaurants')
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+  
+  root 'restaurants#index'
   put '/restaurant/:id/vote', to: 'restaurants#vote', as: 'vote'
   resources :restaurants
 end
