@@ -9,18 +9,62 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th class="h3">Will split rating: <%= @restaurant.will_split %></th>
-              <th class="h3">Wont split rating: <%= @restaurant.wont_split %></th>
+              <th class="h3">Will split rating:
+                <%= @restaurant.votes.where(splits_check: true).count %></th>
+                <th class="h3">Won't split rating:
+                  <%= @restaurant.votes.where(splits_check: false).count %></th>
             </tr>
           </thead>
           <% if user_signed_in? %>
           <tbody>
             <tr>
-              <td><%= button_to "VOTE", vote_path(@restaurant),
-                name: 'will', method: "put",
-                class: "btn btn-success" %></td>
-              <td><%= button_to "VOTE", vote_path(@restaurant),
-                name: "wont", method: "put", class: "btn btn-danger" %></td>
+              <!--- Will Vote section --->
+              <td>
+              <% will_vote = current_user.votes
+                .find_by(restaurant: @restaurant, splits_check: true) %>
+              <% if will_vote.nil? %>
+                <form action="/votes" method="post">
+                  <input type="hidden" name="authenticity_token"
+                    value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="vote[restaurant_id]"
+                    value="<%= @restaurant.id %>">
+                  <input type="hidden" name="vote[splits_check]"
+                    value="true">
+                  <input type="submit" value="VOTE" class="btn btn-success">
+                </form>
+              <% else %>
+              <form action="<%= vote_path(will_vote) %>" method="post">
+                <input type="hidden" name="authenticity_token"
+                  value="<%= form_authenticity_token %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="UNVOTE" class="btn btn-danger">
+              </form>
+              <% end %>
+              </td>
+
+              <!--- Wont Vote section --->
+              <td>
+              <% wont_vote = current_user.votes
+                .find_by(restaurant: @restaurant, splits_check: false) %>
+              <% if wont_vote.nil? %>
+                <form action="/votes" method="post">
+                  <input type="hidden" name="authenticity_token"
+                    value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="vote[restaurant_id]"
+                    value="<%= @restaurant.id %>">
+                  <input type="hidden" name="vote[splits_check]"
+                    value="false">
+                  <input type="submit" value="VOTE" class="btn btn-success">
+                </form>
+              <% else %>
+              <form action="<%= vote_path(wont_vote) %>" method="post">
+                <input type="hidden" name="authenticity_token"
+                  value="<%= form_authenticity_token %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="UNVOTE" class="btn btn-danger">
+              </form>
+              <% end %>
+              </td>
             </tr>
           </tbody>
           <% end %>

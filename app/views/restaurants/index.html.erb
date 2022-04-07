@@ -43,8 +43,8 @@
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.location %></td>
-        <td><%= restaurant.will_split %></td>
-        <td><%= restaurant.wont_split %></td>
+        <td><%= restaurant.votes.where(splits_check: true).count %></td>
+        <td><%= restaurant.votes.where(splits_check: true).count %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <% if user_signed_in? %>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>

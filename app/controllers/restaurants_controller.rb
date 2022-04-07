@@ -26,35 +26,28 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.save
-        format.html { redirect_to restaurant_url(@restaurant), notice: "Restaurant was successfully created." }
+        format.html { redirect_to restaurant_url(@restaurant),
+          notice: "Restaurant was successfully created." }
         format.json { render :show, status: :created, location: @restaurant }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+        format.json { render json: @restaurant.errors,
+          status: :unprocessable_entity }
       end
     end
-  end
-
-  # PATCH/PUT /restaurant/1/vote
-  def vote
-    @restaurant = Restaurant.all.find(params[:id])
-    if params[:will]
-      @restaurant.will_split_upvote
-    elsif params[:wont]
-      @restaurant.wont_split_upvote
-    end
-    redirect_to restaurant_url(@restaurant)
   end
 
   # PATCH/PUT /restaurants/1 or /restaurants/1.json
   def update
     respond_to do |format|
       if @restaurant.update(restaurant_params)
-        format.html { redirect_to restaurant_url(@restaurant), notice: "Restaurant was successfully updated." }
+        format.html { redirect_to restaurant_url(@restaurant),
+          notice: "Restaurant was successfully updated." }
         format.json { render :show, status: :ok, location: @restaurant }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+        format.json { render json: @restaurant.errors,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -64,7 +57,8 @@ class RestaurantsController < ApplicationController
     @restaurant.destroy
 
     respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: "Restaurant was successfully destroyed." }
+      format.html { redirect_to restaurants_url,
+        notice: "Restaurant was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -79,6 +73,6 @@ class RestaurantsController < ApplicationController
     def restaurant_params
       params
         .require(:restaurant)
-        .permit(:name, :location, :will_split, :wont_split)
+        .permit(:name, :location)
     end
 end

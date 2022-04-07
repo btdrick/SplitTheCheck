@@ -10,9 +10,12 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'users/sessions#new'
     delete 'sign_out', to: 'users/sessions#destroy'
   end
+  resources :users
 
   root 'restaurants#index'
-  put '/restaurant/:id/vote', to: 'restaurants#vote', as: 'vote'
-  resources :users
+  #put '/restaurant/:id/vote', to: 'restaurants#vote', as: 'vote'
+
   resources :restaurants
+
+  resources :votes, only: [:create, :destroy]
 end
