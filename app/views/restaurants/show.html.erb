@@ -13,14 +13,17 @@
               <th class="h3">Wont split rating: <%= @restaurant.wont_split %></th>
             </tr>
           </thead>
+          <% if user_signed_in? %>
           <tbody>
             <tr>
               <td><%= button_to "VOTE", vote_path(@restaurant),
-                name: 'will', method: "put", class: "btn btn-success" %></td>
+                name: 'will', method: "put",
+                class: "btn btn-success" %></td>
               <td><%= button_to "VOTE", vote_path(@restaurant),
                 name: "wont", method: "put", class: "btn btn-danger" %></td>
             </tr>
           </tbody>
+          <% end %>
         </table>
       </div>
       <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |

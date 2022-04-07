@@ -3,10 +3,12 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid" id="search">
       <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
         <li>
           <%= link_to 'Add Restaurant', new_restaurant_path,
             class:"btn btn-primary", style:"color:white"%>
         </li>
+        <% end %>
         <li>
           <%= search_form_for @q do |f| %>
             <%= f.search_field :name_or_location_cont,
@@ -44,7 +46,9 @@
         <td><%= restaurant.will_split %></td>
         <td><%= restaurant.wont_split %></td>
         <td><%= link_to 'Show', restaurant %></td>
+        <% if user_signed_in? %>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
