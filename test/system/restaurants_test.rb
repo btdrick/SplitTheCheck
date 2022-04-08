@@ -2,6 +2,14 @@ require "application_system_test_case"
 
 class RestaurantsTest < ApplicationSystemTestCase
   setup do
+    @user = users(:one)
+    @password = 'Password1'
+    visit restaurants_url
+    click_on "Login", match: :first
+    fill_in "user[email]", with: @user.email
+    fill_in "user[password]", with: @password
+    click_on "Log in", match: :first
+    assert_text "Signed in successfully."
     @restaurant = restaurants(:one)
   end
 
@@ -36,24 +44,14 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "voting a restaurant that splits checks" do
+  test "searching for restaurant named Good Eats BBQ" do
     visit restaurants_url
-    click_on "Show", match: :first
-    click_on "will", match: :first
+    fill_in "q[name_or_location_cont]", with: "Good Eats BBQ"
+    click_on "Search", match: :first
 
-    assert_text "Will split rating: 134"
-    assert_text "Wont split rating: 24"
-    click_on "Back"
-  end
-
-  test "voting a restaurant that doesn't split checks" do
-    visit restaurants_url
-    click_on "Show", match: :first
-    click_on "wont", match: :first
-
-    assert_text "Will split rating: 133"
-    assert_text "Wont split rating: 25"
-    click_on "Back"
+    assert_text "1 Result Found"
+    assert_text "Good eats BBQ"
+    click_on "Split the Check 🧾"
   end
 
   test "searching for restaurants in GA" do

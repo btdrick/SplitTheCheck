@@ -10,14 +10,6 @@ class VotesController < ApplicationController
     redirect_to @vote.restaurant
   end
 
-  # DELETE /votes/1
-  def destroy
-    @vote = current_user.votes.find(params[:id])
-    post = @vote.restaurant
-    @vote.destroy
-    redirect_to restaurant_url(@vote.restaurant)
-  end
-
   private
 
   # Only allow a list of trusted parameters through.

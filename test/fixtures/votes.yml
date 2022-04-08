@@ -3,7 +3,9 @@
 one:
   user: one
   restaurant: one
+  splits_check: true
 
 two:
   user: two
   restaurant: two
+  splits_check: false

@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-  has_many :votes
+  has_many :votes, :dependent => :delete_all 
   default_scope -> { order(created_at: :desc) }
   #Parameter validation
   validates :name, presence: true

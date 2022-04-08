@@ -18,9 +18,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   test "should create restaurant" do
     assert_difference('Restaurant.count') do
       post restaurants_url, params: { restaurant:
-        { location: @restaurant.location, name: @restaurant.name,
-          will_split: @restaurant.will_split,
-          wont_split: @restaurant.wont_split } }
+        { location: @restaurant.location, name: @restaurant.name } }
     end
 
     assert_redirected_to restaurant_url(Restaurant.first)
@@ -38,9 +36,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update restaurant" do
     patch restaurant_url(@restaurant), params: { restaurant:
-      { location: @restaurant.location, name: @restaurant.name,
-        will_split: @restaurant.will_split,
-        wont_split: @restaurant.wont_split } }
+      { location: @restaurant.location, name: @restaurant.name } }
     assert_redirected_to restaurant_url(@restaurant)
   end
 
@@ -50,17 +46,5 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to restaurants_url
-  end
-
-  test "should cast vote that restaurant splits checks" do
-    put vote_path(@restaurant),
-      params: { will: 'VOTE', id: @restaurant }
-    assert_redirected_to restaurant_url(@restaurant)
-  end
-
-  test "should cast vote that restaurant doesn't split checks" do
-    put vote_path(@restaurant),
-      params: { wont: 'VOTE', id: @restaurant }
-    assert_redirected_to restaurant_url(@restaurant)
   end
 end

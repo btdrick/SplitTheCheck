@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   resources :restaurants
 
-  resources :votes, only: [:create, :destroy]
+  resources :votes, only: [:create]
 end
