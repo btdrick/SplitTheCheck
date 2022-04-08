@@ -20,9 +20,6 @@
             <tr>
               <!--- Will Vote section --->
               <td>
-              <% will_vote = current_user.votes
-                .find_by(restaurant: @restaurant, splits_check: true) %>
-              <% if will_vote.nil? %>
                 <form action="/votes" method="post">
                   <input type="hidden" name="authenticity_token"
                     value="<%= form_authenticity_token %>">
@@ -32,21 +29,10 @@
                     value="true">
                   <input type="submit" value="VOTE" class="btn btn-success">
                 </form>
-              <% else %>
-              <form action="<%= vote_path(will_vote) %>" method="post">
-                <input type="hidden" name="authenticity_token"
-                  value="<%= form_authenticity_token %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" value="UNVOTE" class="btn btn-danger">
-              </form>
-              <% end %>
               </td>
 
               <!--- Wont Vote section --->
               <td>
-              <% wont_vote = current_user.votes
-                .find_by(restaurant: @restaurant, splits_check: false) %>
-              <% if wont_vote.nil? %>
                 <form action="/votes" method="post">
                   <input type="hidden" name="authenticity_token"
                     value="<%= form_authenticity_token %>">
@@ -54,16 +40,8 @@
                     value="<%= @restaurant.id %>">
                   <input type="hidden" name="vote[splits_check]"
                     value="false">
-                  <input type="submit" value="VOTE" class="btn btn-success">
+                  <input type="submit" value="VOTE" class="btn btn-danger">
                 </form>
-              <% else %>
-              <form action="<%= vote_path(wont_vote) %>" method="post">
-                <input type="hidden" name="authenticity_token"
-                  value="<%= form_authenticity_token %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" value="UNVOTE" class="btn btn-danger">
-              </form>
-              <% end %>
               </td>
             </tr>
           </tbody>

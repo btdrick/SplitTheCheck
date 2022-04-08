@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2022_04_07_193421) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_votes_on_restaurant_id"
-    t.index ["user_id", "restaurant_id"], name: "index_votes_on_user_id_and_restaurant_id", unique: true
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
