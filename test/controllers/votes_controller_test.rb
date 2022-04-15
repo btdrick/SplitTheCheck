@@ -17,4 +17,5 @@ include Devise::Test::IntegrationHelpers
 
     assert_redirected_to restaurant_url(@vote.restaurant)
   end
+  
 end
