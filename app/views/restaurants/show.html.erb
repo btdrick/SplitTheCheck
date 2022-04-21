@@ -45,9 +45,31 @@
               </td>
             </tr>
           </tbody>
-          <% end %>
         </table>
+          <!--- Favorite restaurant section --->
+          <% favorite = current_user.favorites.find_by(restaurant: @restaurant) %>
+          <% if favorite.nil? %>
+            <form id="favorite_button" action="/favorites" method="post">
+              <input type="hidden" name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+              <input type="hidden" name="favorite[restaurant_id]"
+                value="<%= @restaurant.id %>">
+              <input type="submit" value="Add restaurant to favorites"
+                class="btn btn-primary">
+            </form>
+            <% else %>
+            <form id="favorite_button" action="<%= favorite_path(favorite) %>" method="post">
+              <input type="hidden" name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method"
+                value="DELETE">
+              <input type="submit" value="Remove restaurant from favorites"
+                class="btn btn-primary">
+            </form>
+          <% end %>
+        <% end %>
       </div>
+
       <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
       <%= link_to 'Back', restaurants_path %>
   </div>

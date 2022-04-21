@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :restaurants
 
   resources :votes, only: [:create]
+  resources :favorites, only: [:create, :destroy]
 end
