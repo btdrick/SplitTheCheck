@@ -10,9 +10,9 @@
           <thead class="thead-dark">
             <tr>
               <th class="h3">Will split rating:
-                <%= @restaurant.votes.where(splits_check: true).count %></th>
+                <%= @restaurant.get_will_split_vote_count %></th>
                 <th class="h3">Won't split rating:
-                  <%= @restaurant.votes.where(splits_check: false).count %></th>
+                  <%= @restaurant.get_wont_split_vote_count %></th>
             </tr>
           </thead>
           <% if user_signed_in? %>
