@@ -1,0 +1,7 @@
+<div class="form-outline mb-4">
+  <form action="<%= restaurant_comments_path(restaurant) %>" method="post">
+    <input type="hidden" name="authenticity_token">
+    <textarea class="form-control" name="comment[content]" rows="5" cols="20"></textarea><br>
+    <input type ="submit" value="Add comment" class="btn btn-dark">
+  </form>
+</div>

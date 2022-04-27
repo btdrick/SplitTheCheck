@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   resources :users
 
   root 'restaurants#index'
-  #put '/restaurant/:id/vote', to: 'restaurants#vote', as: 'vote'
 
-  resources :restaurants
+  resources :restaurants do
+    resources :comments, only: [:create]
+  end
 
   resources :votes, only: [:create]
   resources :favorites, only: [:create, :destroy]

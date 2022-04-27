@@ -11,8 +11,8 @@
             <tr>
               <th class="h3">Will split rating:
                 <%= @restaurant.get_will_split_vote_count %></th>
-                <th class="h3">Won't split rating:
-                  <%= @restaurant.get_wont_split_vote_count %></th>
+              <th class="h3">Won't split rating:
+                <%= @restaurant.get_wont_split_vote_count %></th>
             </tr>
           </thead>
           <% if user_signed_in? %>
@@ -46,6 +46,11 @@
             </tr>
           </tbody>
         </table>
+
+        <!--- Add comment section --->
+        <%= render partial: 'comments/form',
+          locals: { restaurant: @restaurant } %>
+
           <!--- Favorite restaurant section --->
           <% favorite = current_user.favorites.find_by(restaurant: @restaurant) %>
           <% if favorite.nil? %>
@@ -67,10 +72,25 @@
                 class="btn btn-primary">
             </form>
           <% end %>
+        <% else %>
+          </table>
         <% end %>
       </div>
-
-      <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+      <% if user_signed_in? %>
+        <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+      <% end %>
       <%= link_to 'Back', restaurants_path %>
+  </div>
+</div>
+
+<br>
+
+<div class="card" id="show-restaurant">
+  <div class="card-body">
+  <p>
+    <h4 class="card-title">Comments:</h4>
+    <hr />
+    <%= render @restaurant.comments.order(id: :desc) %>
+  </p>
   </div>
 </div>

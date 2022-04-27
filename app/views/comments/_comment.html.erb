@@ -1,0 +1,13 @@
+<article>
+  <small>
+    <strong>Author: </strong>
+      <%= comment.user.email %><br>
+    <strong>Posted: </strong>
+      <em><%= comment.created_at.to_formatted_s(:long) %></em><br>
+  </small><br>
+
+  <p>
+    - <%= comment.content %>
+  </p>  
+</article>
+<hr>
