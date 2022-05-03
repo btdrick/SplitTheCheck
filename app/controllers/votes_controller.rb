@@ -1,4 +1,7 @@
 class VotesController < ApplicationController
+  protect_from_forgery with: :exception
+  before_action :authenticate_user!, only: [:create]
+
   # POST /votes
   def create
     @vote = current_user.votes.new(vote_params)

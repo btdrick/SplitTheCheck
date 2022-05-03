@@ -20,4 +20,5 @@ Rails.application.routes.draw do
 
   resources :votes, only: [:create]
   resources :favorites, only: [:create, :destroy]
+  get 'summary/index'
 end

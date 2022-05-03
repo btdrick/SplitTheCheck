@@ -1,4 +1,7 @@
 class FavoritesController < ApplicationController
+  protect_from_forgery with: :exception
+  before_action :authenticate_user!, only: [:create]
+
   # POST /favorites
   def create
     @favorite = current_user.favorites.new(favorite_params)

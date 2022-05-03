@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  protect_from_forgery with: :exception
+  before_action :authenticate_user!, only: [:create]
+
   # POST /restaurants/1/comments
   def create
     @comment = current_user.comments.new(comment_params)
