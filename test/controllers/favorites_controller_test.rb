@@ -19,7 +19,6 @@ include Devise::Test::IntegrationHelpers
   end
 
   test "should destroy favorite" do
-    puts favorite_url(@favorite)
     assert_difference('Favorite.count', -1) do
       delete favorite_url(@favorite)
     end
