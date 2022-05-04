@@ -1,0 +1,34 @@
+<table class="shadow table table-bordered" id="listings">
+  <thead>
+    <tr id="header">
+      <th colspan="100%">
+        <h1>
+        <% if section == 'Favorites' %>
+          No favorite restaurants
+        <% elsif section == 'Vote History' %>
+          No votes cast
+        <% elsif section == 'Comment History' %>
+          No comments made
+        <% else %>
+          No results
+        <% end %>
+        </h1>
+      </th>
+    </tr>
+  </thead>
+  <thead class="thead-light">
+    <tr>
+      <th>
+        <% if section == 'Favorites' %>
+          Why not try adding some?
+        <% elsif section == 'Vote History' %>
+          Vote on whether a restaurant splits the check!
+        <% elsif section == 'Comment History' %>
+          Spread the word on which restaurants split the check!
+        <% else %>
+          Section will be updated when change made
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+</table>

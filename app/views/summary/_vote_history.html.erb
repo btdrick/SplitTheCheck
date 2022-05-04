@@ -1,0 +1,29 @@
+<table class="shadow table table-bordered" id="listings">
+  <thead>
+    <tr id="header">
+      <th colspan="100%">
+        <h1>Vote History<h1>
+      </th>
+    </tr>
+  </thead>
+
+  <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Split the Check?</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% current_user.votes.each do |vote| %>
+    <tr>
+      <td><%= vote.restaurant.name %></td>
+      <td><%= vote.restaurant.location %></td>
+      <td><%= vote.splits_check %></td>
+      <td><%= vote.created_at.to_formatted_s(:long) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

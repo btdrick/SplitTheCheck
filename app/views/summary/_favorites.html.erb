@@ -1,0 +1,27 @@
+<table class="shadow table table-bordered" id="listings">
+  <thead>
+    <tr id="header">
+      <th colspan="100%">
+        <h1>Favorite Restaurants</h1>
+      </th>
+    </tr>
+  </thead>
+  
+  <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th colspan ="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.restaurant.name %></td>
+        <td><%= favorite.restaurant.location %></td>
+        <td><%= link_to 'Show', favorite.restaurant %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

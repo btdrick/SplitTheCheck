@@ -1,83 +1,39 @@
 <% if user_signed_in? %>
-<h1>User Summary</h1>
 
-<table class="shadow table table-bordered" id="listings">
-  <thead>
-    <tr id="header">
-      <th colspan="100%">
-        <h1>Favorites</h1>
-      </th>
-    </tr>
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-    </tr>
-  </thead>
+<div>
+<h1>Activity Summary</h1>
+<small><strong>For: </strong>
+  <%= current_user.email %></small>
+</div><br>
 
-  <tbody>
-    <% current_user.favorites.each do |favorite| %>
-      <tr>
-        <td><%= favorite.restaurant.name %></td>
-        <td><%= favorite.restaurant.location %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!--- Favorites section --->
+<div class="field">
+<% if current_user.favorites.count > 0 %>
+  <%= render partial: 'summary/favorites' %>
+<% else %>
+<%= render partial: 'summary/no_history',
+  locals: { section: 'Favorites' } %>
+<% end %>
+</div>
 
-<table class="shadow table table-bordered" id="listings">
-  <thead>
-    <tr id="header">
-      <th colspan="100%">
-        <h1>Vote History</h1>
-      </th>
-    </tr>
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Split the Check?</th>
-      <th>Date</th>
-    </tr>
-  </thead>
+<!--- Vote History section --->
+<div class="field">
+<% if current_user.votes.count > 0 %>
+  <%= render partial: 'summary/vote_history' %>
+<% else %>
+<%= render partial: 'summary/no_history',
+  locals: { section: 'Vote History' } %>
+<% end %>
+</div>
 
-  <tbody>
-    <% current_user.votes.each do |vote| %>
-      <tr>
-        <td><%= vote.restaurant.name %></td>
-        <td><%= vote.restaurant.location %></td>
-        <td><%= vote.splits_check %></td>
-        <td><%= vote.created_at.to_formatted_s(:long) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!--- Comment History section --->
+<div class="field">
+<% if current_user.comments.count > 0 %>
+  <%= render partial: 'summary/comment_history' %>
+<% else %>
+<%= render partial: 'summary/no_history',
+  locals: { section: 'Comment History' } %>
+<% end %>
+</div>
 
-<table class="shadow table table-bordered" id="listings">
-  <thead>
-    <tr id="header">
-      <th colspan="100%">
-        <h1>Comment History</h1>
-      </th>
-    </tr>
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Comment</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% current_user.comments.each do |comment| %>
-      <tr>
-        <td><%= comment.restaurant.name %></td>
-        <td><%= comment.restaurant.location %></td>
-        <td><%= comment.content %></td>
-        <td><%= comment.created_at.to_formatted_s(:long) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 <% end %>

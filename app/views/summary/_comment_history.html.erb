@@ -1,0 +1,29 @@
+<table class="shadow table table-bordered" id="listings">
+  <thead>
+    <tr id="header">
+      <th colspan="100%">
+        <h1>Comment History<h1>
+      </th>
+    </tr>
+  </thead>
+
+  <thead class="thead-light">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Comment</th>
+        <th>Date</th>
+      </tr>
+  </thead>
+  
+  <tbody>
+    <% current_user.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.restaurant.name %></td>
+        <td><%= comment.restaurant.location %></td>
+        <td><%= comment.content %></td>
+        <td><%= comment.created_at.to_formatted_s(:long) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
